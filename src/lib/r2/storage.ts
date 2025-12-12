@@ -1,18 +1,44 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import crypto from "crypto";
 
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: process.env.R2_S3_API_URL,
-  credentials: {
-    accessKeyId: process.env.R2_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY!,
-  },
-});
+type R2Config = {
+  s3Client: S3Client;
+  bucketName: string;
+  publicUrl: string;
+};
 
-const BUCKET_NAME = process.env.R2_BUCKET_NAME!;
-// R2 public URL - using R2.dev subdomain for public access
-const R2_PUBLIC_URL = process.env.R2_PUBLIC_URL!;
+let r2Config: R2Config | null = null;
+
+function getR2Config(): R2Config {
+  const endpoint = process.env.R2_S3_API_URL;
+  const accessKeyId = process.env.R2_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
+  const bucketName = process.env.R2_BUCKET_NAME;
+  const publicUrl = process.env.R2_PUBLIC_URL;
+
+  if (!endpoint) throw new Error("R2_S3_API_URL environment variable is not set");
+  if (!accessKeyId) throw new Error("R2_ACCESS_KEY_ID environment variable is not set");
+  if (!secretAccessKey) throw new Error("R2_SECRET_ACCESS_KEY environment variable is not set");
+  if (!bucketName) throw new Error("R2_BUCKET_NAME environment variable is not set");
+  if (!publicUrl) throw new Error("R2_PUBLIC_URL environment variable is not set");
+
+  if (!r2Config) {
+    r2Config = {
+      s3Client: new S3Client({
+        region: "auto",
+        endpoint,
+        credentials: {
+          accessKeyId,
+          secretAccessKey,
+        },
+      }),
+      bucketName,
+      publicUrl,
+    };
+  }
+
+  return r2Config;
+}
 
 function getExtensionFromContentType(contentType: string): string {
   const extensions: Record<string, string> = {
@@ -38,6 +64,8 @@ export async function uploadBufferToR2(
   contentType: string,
 ): Promise<string> {
   try {
+    const { s3Client, bucketName, publicUrl } = getR2Config();
+
     // Convert to Buffer if needed
     const bufferData = Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer);
 
@@ -49,7 +77,7 @@ export async function uploadBufferToR2(
     // Upload to R2
     await s3Client.send(
       new PutObjectCommand({
-        Bucket: BUCKET_NAME,
+        Bucket: bucketName,
         Key: filename,
         Body: bufferData,
         ContentType: contentType,
@@ -57,7 +85,7 @@ export async function uploadBufferToR2(
       }),
     );
 
-    const r2Url = `${R2_PUBLIC_URL}/${filename}`;
+    const r2Url = `${publicUrl}/${filename}`;
 
     console.log(`Uploaded image to R2: ${filename}`);
 

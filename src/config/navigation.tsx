@@ -3,6 +3,7 @@ import React from "react";
 import { Badge } from "@/components/icons/Badge";
 import { Blockquote } from "@/components/icons/Blockquote";
 import { BookOpen } from "@/components/icons/BookOpen";
+import { Camera } from "@/components/icons/Camera";
 import { Home } from "@/components/icons/Home";
 import { Newspaper } from "@/components/icons/Newspaper";
 import { IconProps } from "@/components/icons/types";
@@ -61,6 +62,15 @@ export const navigationItems: NavigationItem[] = [
     icon: Badge,
     keywords: ["resume", "cv", "experience"],
     isActive: (pathname) => pathname.startsWith("/resume"),
+    section: "main",
+  },
+  {
+    id: "photos",
+    label: "Photos",
+    href: "/photos",
+    icon: Camera,
+    keywords: ["photos", "gallery", "photography"],
+    isActive: (pathname) => pathname.startsWith("/photos"),
     section: "main",
   },
 ];

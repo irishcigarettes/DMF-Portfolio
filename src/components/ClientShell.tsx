@@ -4,7 +4,9 @@ import { PropsWithChildren, useEffect } from "react";
 import { Toaster } from "sonner";
 
 import { CommandMenu } from "@/components/CommandMenu";
+import { MacClickSounds } from "@/components/MacClickSounds";
 import { MobileNavMenu } from "@/components/MobileNavMenu";
+import { ThemedCursor } from "@/components/ThemedCursor";
 
 import { GlobalTopBar } from "./GlobalTopBar";
 
@@ -94,6 +96,8 @@ export function ClientShell({ children }: PropsWithChildren) {
 
   return (
     <>
+      <ThemedCursor />
+      <MacClickSounds />
       <Toaster position="bottom-center" />
       <CommandMenu />
       <MobileNavMenu />
