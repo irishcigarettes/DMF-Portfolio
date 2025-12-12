@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { LatestSlideshow, type LatestSlideshowItem } from "@/components/LatestSlideshow";
 import { MAGAZINE_ISSUES } from "@/data/magazine";
 import { PORTFOLIO } from "@/data/portfolio";
 import { createMetadata, createPersonJsonLd } from "@/lib/metadata";
+import { getBestPageImageUrl } from "@/lib/utils/page-preview";
 
 export const metadata: Metadata = createMetadata({
   title: "Dalton Feldhut",
@@ -28,7 +30,7 @@ function StoryCategoryPill({ category }: { category: "written" | "edited" }) {
   );
 }
 
-export default function Home() {
+export default async function Home() {
   const personJsonLd = createPersonJsonLd();
   const magazineIssue = MAGAZINE_ISSUES[0];
   const magazineHref = magazineIssue ? `/magazine/${magazineIssue.slug}` : "/magazine";
@@ -36,19 +38,9 @@ export default function Home() {
     ? (magazineIssue.pageImageUrls[0] ?? magazineIssue.coverImageUrl)
     : null;
 
-  type LatestItem = {
-    section: string;
-    sectionHref: string;
-    title: string;
-    href: string;
-    description?: string;
-    category?: "written" | "edited";
-  };
-
-  const latest: LatestItem[] = [
+  const latestBase = [
     { section: "Stories", href: "/stories", items: PORTFOLIO.stories.slice(0, 1) },
     { section: "Columns", href: "/columns", items: PORTFOLIO.columns.slice(0, 2) },
-    { section: "Video", href: PORTFOLIO.links.youtube, items: PORTFOLIO.videos.slice(0, 1) },
   ].flatMap((group) =>
     group.items.map((item) => ({
       section: group.section,
@@ -57,6 +49,13 @@ export default function Home() {
       href: item.href,
       description: item.description,
       category: "category" in item ? item.category : undefined,
+    })),
+  );
+
+  const latest: LatestSlideshowItem[] = await Promise.all(
+    latestBase.map(async (item) => ({
+      ...item,
+      thumbnailUrl: await getBestPageImageUrl(item.href, { revalidateSeconds: 60 * 60 * 24 }),
     })),
   );
 
@@ -90,48 +89,8 @@ export default function Home() {
                   <span className="text-quaternary font-mono text-sm">From my desk</span>
                 </div>
 
-                <div className="mt-6 flex flex-col gap-4">
-                  {latest.map((item) => (
-                    <article
-                      key={`${item.section}-${item.href}`}
-                      className="group flex flex-col gap-1"
-                    >
-                      <div className="text-quaternary font-mono text-xs tracking-wider uppercase">
-                        {item.sectionHref.startsWith("http") ? (
-                          <a
-                            href={item.sectionHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-primary"
-                          >
-                            {item.section}
-                          </a>
-                        ) : (
-                          <Link href={item.sectionHref} className="hover:text-primary">
-                            {item.section}
-                          </Link>
-                        )}
-                      </div>
-                      <div className="flex items-baseline justify-between gap-3">
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary min-w-0 font-serif text-2xl leading-tight underline-offset-4 group-hover:underline"
-                        >
-                          {item.title}
-                        </a>
-                        {item.section === "Stories" && item.category ? (
-                          <span className="shrink-0">
-                            <StoryCategoryPill category={item.category} />
-                          </span>
-                        ) : null}
-                      </div>
-                      {item.description && (
-                        <p className="text-secondary italic">{item.description}</p>
-                      )}
-                    </article>
-                  ))}
+                <div className="mt-6">
+                  <LatestSlideshow items={latest} />
                 </div>
               </section>
 

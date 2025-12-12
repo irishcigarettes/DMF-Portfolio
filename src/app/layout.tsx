@@ -44,7 +44,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="rgb(10, 10, 10)" media="(prefers-color-scheme: dark)" />
       </head>
-      <body className={cn(sans.variable, serif.variable)}>
+      <body suppressHydrationWarning className={cn(sans.variable, serif.variable)}>
         <Providers>
           <ClientShell>{children}</ClientShell>
         </Providers>

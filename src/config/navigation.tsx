@@ -57,6 +57,15 @@ export const navigationItems: NavigationItem[] = [
     section: "main",
   },
   {
+    id: "photo",
+    label: "Photo",
+    href: "/photo",
+    icon: Camera,
+    keywords: ["photo", "photos", "gallery", "photography"],
+    isActive: (pathname) => pathname.startsWith("/photo"),
+    section: "main",
+  },
+  {
     id: "video",
     label: "Video",
     href: "/video",
@@ -72,15 +81,6 @@ export const navigationItems: NavigationItem[] = [
     icon: Badge,
     keywords: ["resume", "cv", "experience"],
     isActive: (pathname) => pathname.startsWith("/resume"),
-    section: "main",
-  },
-  {
-    id: "photos",
-    label: "Photos",
-    href: "/photos",
-    icon: Camera,
-    keywords: ["photos", "gallery", "photography"],
-    isActive: (pathname) => pathname.startsWith("/photos"),
     section: "main",
   },
 ];
