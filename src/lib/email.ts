@@ -14,13 +14,20 @@ export const BASE_URL =
 
 const POSTMARK_TEMPLATE_ID = 18037634;
 
-// Environment validation
-if (!process.env.POSTMARK_CLIENT_ID) {
-  throw new Error("POSTMARK_CLIENT_ID environment variable is not set");
-}
+let postmarkClient: ServerClient | null = null;
 
-// Create singleton Postmark client
-const postmarkClient = new ServerClient(process.env.POSTMARK_CLIENT_ID);
+function getPostmarkClient(): ServerClient {
+  const clientId = process.env.POSTMARK_CLIENT_ID;
+  if (!clientId) {
+    throw new Error("POSTMARK_CLIENT_ID environment variable is not set");
+  }
+
+  if (!postmarkClient) {
+    postmarkClient = new ServerClient(clientId);
+  }
+
+  return postmarkClient;
+}
 
 export interface DigestEmailData {
   to: string;
@@ -33,6 +40,7 @@ export interface DigestEmailData {
  * Send a Hacker News digest email to a subscriber
  */
 export async function sendHNDigestEmail({ to, date, posts, unsubscribeUrl }: DigestEmailData) {
+  const postmarkClient = getPostmarkClient();
   const result = await postmarkClient.sendEmailWithTemplate({
     From: BASE_EMAIL,
     To: to,

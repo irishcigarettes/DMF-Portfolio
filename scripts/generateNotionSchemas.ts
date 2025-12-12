@@ -9,10 +9,50 @@ import { notion } from "../src/lib/notion/client";
 
 // Type for database property configurations
 type DatabaseProperty = DataSourceObjectResponse["properties"][string];
+type DatabaseProperties = Record<string, DatabaseProperty>;
+type SavedSchemaFile = { props: DatabaseProperties };
 
 /** Properly escape string for use in generated TypeScript code */
 function escapeForTypeScript(str: string): string {
   return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function isValidTypeScriptIdentifier(key: string): boolean {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(key);
+}
+
+function toTypeScriptObjectKey(key: string): string {
+  if (isValidTypeScriptIdentifier(key)) {
+    return key;
+  }
+
+  return `"${escapeForTypeScript(key)}"`;
+}
+
+function getSchemaJsonPath(varName: string): string {
+  return path.join(process.cwd(), "schemas", `${varName}Schema.json`);
+}
+
+function loadPropsFromDisk(varName: string): DatabaseProperties | null {
+  const schemaPath = getSchemaJsonPath(varName);
+
+  if (!fs.existsSync(schemaPath)) {
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(schemaPath, "utf8");
+    const parsed = JSON.parse(raw) as SavedSchemaFile;
+
+    if (!parsed || typeof parsed !== "object" || !("props" in parsed)) {
+      return null;
+    }
+
+    return parsed.props;
+  } catch (err) {
+    console.warn(`Failed to read schema cache for ${varName} at ${schemaPath}`, err);
+    return null;
+  }
 }
 
 /** Map Notion property types to Zod type strings. Extend as needed. */
@@ -125,39 +165,52 @@ async function generateSchemas() {
     'import { z } from "zod";\n',
   ];
 
+  fs.mkdirSync(path.join(process.cwd(), "schemas"), { recursive: true });
+
   for (const db of databases) {
-    if (!db.id) {
-      console.warn(`Skipping ${db.varName} — no ID provided`);
-      continue;
+    let props: DatabaseProperties | null = null;
+
+    // Prefer live Notion schema when configured; otherwise fall back to committed JSON cache.
+    if (db.id && process.env.NOTION_TOKEN) {
+      try {
+        // First retrieve the database to get the data source ID
+        const database = (await notion.databases.retrieve({
+          database_id: db.id,
+        })) as DatabaseObjectResponse;
+
+        const dataSourceId = database.data_sources[0]?.id;
+        if (!dataSourceId) {
+          console.warn(`No data source found for ${db.varName}; falling back to cached schema`);
+        } else {
+          // Then retrieve the data source to get properties
+          const dataSource = (await notion.dataSources.retrieve({
+            data_source_id: dataSourceId,
+          })) as DataSourceObjectResponse;
+
+          props = dataSource.properties;
+
+          // Save/update cache on disk
+          fs.writeFileSync(getSchemaJsonPath(db.varName), JSON.stringify({ props }, null, 2));
+        }
+      } catch (err) {
+        console.warn(`Failed to fetch Notion schema for ${db.varName}; falling back to cached schema`, err);
+      }
     }
 
-    // First retrieve the database to get the data source ID
-    const database = (await notion.databases.retrieve({
-      database_id: db.id,
-    })) as DatabaseObjectResponse;
-
-    const dataSourceId = database.data_sources[0]?.id;
-    if (!dataSourceId) {
-      console.warn(`Skipping ${db.varName} — no data source found`);
-      continue;
+    if (!props) {
+      props = loadPropsFromDisk(db.varName);
     }
 
-    // Then retrieve the data source to get properties
-    const dataSource = (await notion.dataSources.retrieve({
-      data_source_id: dataSourceId,
-    })) as DataSourceObjectResponse;
-
-    const props = dataSource.properties;
-
-    // save this to a file
-    fs.writeFileSync(
-      path.join(process.cwd(), "schemas", `${db.varName}Schema.json`),
-      JSON.stringify({ props }, null, 2),
-    );
+    if (!props) {
+      console.warn(
+        `No schema source available for ${db.varName} (missing env + missing cache). Generating an empty schema.`,
+      );
+      props = {};
+    }
 
     const propLines: string[] = [];
     for (const [name, prop] of Object.entries(props)) {
-      const key = name.includes(" ") || name.includes("-") ? `"${name}"` : name;
+      const key = toTypeScriptObjectKey(name);
       const zodType = notionPropToZod(prop);
       propLines.push(`  ${key}: ${zodType},`);
     }

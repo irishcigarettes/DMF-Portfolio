@@ -8,11 +8,14 @@ import { BASE_URL } from "./email";
  * JWT token utilities for unsubscribe links and digest helpers
  */
 
-if (!process.env.JWT_SIGNING_KEY) {
-  throw new Error("JWT_SIGNING_KEY environment variable is not set");
-}
+function getJwtSecret(): string {
+  const secret = process.env.JWT_SIGNING_KEY;
+  if (!secret) {
+    throw new Error("JWT_SIGNING_KEY environment variable is not set");
+  }
 
-const JWT_SECRET = process.env.JWT_SIGNING_KEY;
+  return secret;
+}
 
 // Schema for unsubscribe token payload (using non-deprecated pattern)
 const UnsubscribeTokenSchema = z.object({
@@ -25,7 +28,7 @@ export type UnsubscribeTokenPayload = z.infer<typeof UnsubscribeTokenSchema>;
  * Generate a JWT token for email unsubscribe links
  */
 export function generateUnsubscribeToken(email: string): string {
-  return jwt.sign({ email }, JWT_SECRET);
+  return jwt.sign({ email }, getJwtSecret());
 }
 
 /**
@@ -34,7 +37,7 @@ export function generateUnsubscribeToken(email: string): string {
  */
 export function verifyUnsubscribeToken(token: string): string | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, getJwtSecret());
     const result = UnsubscribeTokenSchema.safeParse(decoded);
 
     if (!result.success) {

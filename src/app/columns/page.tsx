@@ -18,7 +18,7 @@ export const metadata: Metadata = createMetadata({
   path: "/columns",
 });
 
-export const revalidate = 60 * 60 * 24;
+export const revalidate = 86400;
 
 type ColumnWithThumbnail = (typeof PORTFOLIO.columns)[number] & {
   thumbnailUrl: string | null;
