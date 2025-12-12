@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-import { ThumbnailImage } from "@/components/ThumbnailImage";
 import { ChevronLeft } from "@/components/icons/ChevronLeft";
 import { ChevronRight } from "@/components/icons/ChevronRight";
+import { ThumbnailImage } from "@/components/ThumbnailImage";
 import { IconButton } from "@/components/ui/IconButton";
 import { VisuallyHidden } from "@/components/ui/VisuallyHidden";
 import { cn } from "@/lib/utils";
@@ -185,7 +185,7 @@ export function LatestSlideshow({ items, autoAdvanceMs = 8000, className }: Late
                       onClick={() => setIndex(i)}
                       className={cn(
                         "border-secondary h-2.5 w-2.5 rounded-full border transition-colors",
-                        selected ? "bg-primary" : "bg-transparent hover:bg-secondary/30",
+                        selected ? "bg-primary" : "hover:bg-secondary/30 bg-transparent",
                       )}
                       aria-label={`Go to item ${i + 1} of ${count}`}
                       aria-current={selected ? "true" : undefined}

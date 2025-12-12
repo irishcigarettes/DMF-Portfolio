@@ -10,9 +10,7 @@ export interface EmailSubscriptionRow {
   type: string;
 }
 
-let db:
-  | ReturnType<typeof connect>
-  | null = null;
+let db: ReturnType<typeof connect> | null = null;
 
 function getDb(): ReturnType<typeof connect> {
   const host = process.env.DATABASE_HOST;

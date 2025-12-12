@@ -3,19 +3,18 @@ import Link from "next/link";
 
 import { PageTitle } from "@/components/Typography";
 import { buttonVariants } from "@/components/ui/Button";
-import { listLocalPhotos } from "@/lib/local-photos";
+import { PHOTOS } from "@/data/photos";
 import { createMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
+import type { PhotosGalleryItem } from "./PhotosGallery";
 import { PhotosGallery } from "./PhotosGallery";
 
 export const metadata: Metadata = createMetadata({
   title: "Photos",
-  description: "Photos from the local images folder.",
+  description: "Photos served as static assets from /public/photos.",
   path: "/photos",
 });
-
-export const revalidate = 3600;
 
 const PER_PAGE = 18;
 
@@ -31,7 +30,15 @@ export default async function PhotosPage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const params = await searchParams;
-  const allPhotos = await listLocalPhotos();
+
+  const allPhotos: PhotosGalleryItem[] = PHOTOS.map((photo, index) => ({
+    id: `photo-${String(index + 1).padStart(4, "0")}`,
+    src: photo.src,
+    rawSrc: photo.src,
+    width: photo.width,
+    height: photo.height,
+    alt: photo.alt,
+  }));
 
   const total = allPhotos.length;
   const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
@@ -49,7 +56,8 @@ export default async function PhotosPage({
         <header className="flex flex-col gap-2">
           <PageTitle className="text-accent-crimson">Photos</PageTitle>
           <p className="text-secondary max-w-2xl leading-relaxed">
-            Photos from <code>DMF-Portfolio/images</code>. Click any image to view it on-site.
+            Photos served from <code>DMF-Portfolio/public/photos</code> (generated at build time
+            from <code>DMF-Portfolio/images</code>). Click any image to view it on-site.
           </p>
           {total > 0 ? (
             <div className="mt-1 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">

@@ -193,7 +193,10 @@ async function generateSchemas() {
           fs.writeFileSync(getSchemaJsonPath(db.varName), JSON.stringify({ props }, null, 2));
         }
       } catch (err) {
-        console.warn(`Failed to fetch Notion schema for ${db.varName}; falling back to cached schema`, err);
+        console.warn(
+          `Failed to fetch Notion schema for ${db.varName}; falling back to cached schema`,
+          err,
+        );
       }
     }
 

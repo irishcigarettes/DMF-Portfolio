@@ -46,3 +46,7 @@ next-env.d.ts
 
 # notion data
 data-exports/
+
+# generated photos (built from /images into /public/photos)
+/public/photos/*
+!/public/photos/.gitkeep
