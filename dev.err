@@ -1,0 +1,366 @@
+$ bun run generate-schemas
+$ bun scripts/generateNotionSchemas.ts
+Skipping Stack — no ID provided
+Skipping AMA — no ID provided
+Skipping Writing — no ID provided
+Skipping DesignDetailsEpisodes — no ID provided
+Skipping Music — no ID provided
+Skipping GoodWebsites — no ID provided
+Skipping Speaking — no ID provided
+$ next dev --turbopack
+@notionhq/client warn: request fail {
+  code: "unauthorized",
+  message: "API token is invalid.",
+  requestId: "51c4390f-0c15-4a45-ba11-8c56b0884328",
+}
+Error fetching writing items: Error [APIResponseError]: API token is invalid.
+    at processTicksAndRejections (null) {
+  code: 'unauthorized',
+  status: 401,
+  headers: Headers {},
+  body: '{"object":"error","status":401,"code":"unauthorized","message":"API token is invalid.","request_id":"51c4390f-0c15-4a45-ba11-8c56b0884328"}',
+  additional_data: undefined,
+  request_id: '51c4390f-0c15-4a45-ba11-8c56b0884328'
+}
+@notionhq/client warn: request fail {
+  code: "unauthorized",
+  message: "API token is invalid.",
+  requestId: "9607cc8f-8df6-4084-a5fd-c93409137e8f",
+}
+Error fetching good website items: Error [APIResponseError]: API token is invalid.
+    at processTicksAndRejections (null) {
+  code: 'unauthorized',
+  status: 401,
+  headers: Headers {},
+  body: '{"object":"error","status":401,"code":"unauthorized","message":"API token is invalid.","request_id":"9607cc8f-8df6-4084-a5fd-c93409137e8f"}',
+  additional_data: undefined,
+  request_id: '9607cc8f-8df6-4084-a5fd-c93409137e8f'
+}
+@notionhq/client warn: request fail {
+  code: "unauthorized",
+  message: "API token is invalid.",
+  requestId: "3ed6d8a7-02af-4911-869f-19c53bedb12b",
+}
+Error fetching good website items: Error [APIResponseError]: API token is invalid.
+    at processTicksAndRejections (null) {
+  code: 'unauthorized',
+  status: 401,
+  headers: Headers {},
+  body: '{"object":"error","status":401,"code":"unauthorized","message":"API token is invalid.","request_id":"3ed6d8a7-02af-4911-869f-19c53bedb12b"}',
+  additional_data: undefined,
+  request_id: '3ed6d8a7-02af-4911-869f-19c53bedb12b'
+}
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Error fetching curated Instagram photos: Error: Missing env var: INSTAGRAM_ACCESS_TOKEN
+    at getInstagramConfig (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:97:19)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:128:51)
+    at fetchInstagramMedia (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:127:36)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:284:151)
+    at getCuratedInstagramPhotosUncached (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:280:50)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:201)
+    at <anonymous> (C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\server\chunks\[root-of-the-server]__10d45470._.js:315:240)
+    at processTicksAndRejections (null)
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+Detected multiple Jotai instances. It may cause unexpected behavior with the default store. https://github.com/pmndrs/jotai/discussions/2044
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+error: script "dev" exited with code 116

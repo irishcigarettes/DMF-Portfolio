@@ -107,7 +107,7 @@ function StackItem({ item }: { item: StackItem }) {
   const isEmoji = iconSource && !iconSource.startsWith("http") && iconSource.length <= 2;
 
   return (
-    <div className="border-secondary hover:bg-secondary group relative border-b md:dark:hover:bg-white/5">
+    <div className="border-secondary group hover:bg-secondary active:bg-tertiary focus-within:bg-secondary relative cursor-pointer border-b transition-colors md:dark:hover:bg-white/5 md:dark:active:bg-white/[0.08]">
       {item.url && <Link target="_blank" href={item.url} className="absolute inset-0" />}
       <div className="flex gap-3 px-4 py-3 md:grid md:grid-cols-12 md:items-center md:gap-4">
         {/* Icon/Image - shown on mobile, hidden on desktop */}

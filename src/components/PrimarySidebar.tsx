@@ -114,10 +114,17 @@ export function SidebarItem({
   trailingAccessory?: React.ReactNode;
 }) {
   return (
-    <Link href={href} onClick={onClick}>
+    <Link
+      href={href}
+      onClick={onClick}
+      className="group/sidebar-item block rounded-md"
+      data-magnetic="true"
+      data-magnetic-strength="2"
+    >
       <div
-        className={cn("group/sidebar-item flex h-[30px] items-center gap-2 rounded-md px-2", {
-          "hover:bg-black/5 dark:hover:bg-white/[0.08]": !isActive,
+        className={cn("flex h-[30px] items-center gap-2 rounded-md px-2 transition-colors", {
+          "hover:bg-black/5 active:bg-black/[0.08] dark:hover:bg-white/[0.08] dark:active:bg-white/[0.12]":
+            !isActive,
           "bg-black/5 hover:bg-black/5 dark:bg-white/[0.08] dark:hover:bg-white/[0.08]": isActive,
         })}
       >
@@ -151,7 +158,12 @@ function SidebarHeader() {
 
   return (
     <div className="mr-2 ml-1 flex h-11 flex-none items-center justify-between select-none">
-      <Link href="/" className="flex items-center gap-2 px-2 py-1">
+      <Link
+        href="/"
+        className="flex items-center gap-2 rounded-md px-2 py-1 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+        data-magnetic="true"
+        data-magnetic-strength="2"
+      >
         <Image
           src="/img/avatar.jpg"
           alt="Brian Lovin"

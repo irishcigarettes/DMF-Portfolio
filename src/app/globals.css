@@ -4,45 +4,72 @@
 :root {
   --primary-sidebar-width: 212px;
   --secondary-sidebar-width: 350px;
-
-  --color-neutral-850: oklch(23% 0 0);
+  /*
+    90s Windows-style cursors (SVG data URIs)
+    Note: Cursor support varies by browser; each has a sensible fallback.
+  */
+  --cursor-90s-default: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M3%203%20L3%2027%20L9%2021%20L13%2031%20L17%2029%20L13%2019%20L21%2019%20Z'%20fill='white'%20stroke='black'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3C/svg%3E")
+    3 3;
+  --cursor-90s-pointer: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M12%204%20c-1.1%200-2%200.9-2%202v12.2l-1.6-1.6c-1.2-1.2-3.1-1.2-4.3%200s-1.2%203.1%200%204.3l7.2%207.2c1.1%201.1%202.6%201.7%204.1%201.7h5.6c2.7%200%205.1-1.8%205.8-4.4l2.1-8.3c0.3-1.3-0.5-2.6-1.8-2.9c-1.3-0.3-2.6%200.5-2.9%201.8L22%2020V6c0-1.1-0.9-2-2-2s-2%200.9-2%202v8V6c0-1.1-0.9-2-2-2s-2%200.9-2%202v9V7c0-1.7-1.3-3-3-3Z'%20fill='white'%20stroke='black'%20stroke-width='2'%20stroke-linejoin='round'%20stroke-linecap='round'/%3E%3C/svg%3E")
+    6 2;
+  /* Editorial palette (Bum Diary–inspired) */
+  --color-neutral-900: #111111;
+  --color-neutral-700: #404040;
+  --color-neutral-500: #737373;
+  --color-neutral-400: #a3a3a3;
 
   --text-color-primary: var(--color-neutral-900);
-  --text-color-secondary: var(--color-neutral-600);
+  --text-color-secondary: var(--color-neutral-700);
   --text-color-tertiary: var(--color-neutral-500);
   --text-color-quaternary: var(--color-neutral-400);
 
-  --text-color-campsite: #ff591e;
+  /* Section accent colors */
+  --accent-crimson: #0f0003;
+  /* Use one accent color everywhere (deep crimson) */
+  --accent-latest: var(--accent-crimson);
+  --accent-stories: var(--accent-crimson);
+  --accent-columns: var(--accent-crimson);
+  --accent-about: var(--accent-crimson);
+  --accent-resume: var(--accent-crimson);
 
-  --background-color-main: var(--color-neutral-50);
-  --background-color-primary: var(--color-white);
-  --background-color-secondary: var(--color-neutral-50);
-  --background-color-tertiary: var(--color-neutral-100);
-  --background-color-quaternary: var(--color-neutral-200);
-  --background-color-elevated: var(--color-white);
+  --background-color-main: #ffffff;
+  --background-color-primary: #ffffff;
+  --background-color-secondary: #fafafa;
+  --background-color-tertiary: #f5f5f5;
+  --background-color-quaternary: #f0f0f0;
+  --background-color-elevated: #ffffff;
+
+  --scrollbar-color: #c7c7c7;
+  --text-color-campsite: #111111;
 
   --border-color-primary: rgba(0, 0, 0, 0.12);
-  --border-color-secondary: rgba(0, 0, 0, 0.09);
-
-  --scrollbar-color: var(--color-neutral-300);
+  --border-color-secondary: rgba(0, 0, 0, 0.08);
+  --focus-ring-color: rgba(15, 0, 3, 0.35);
 
   @variant dark {
-    --text-color-primary: rgba(255, 255, 255, 0.9);
-    --text-color-secondary: rgba(255, 255, 255, 0.7);
-    --text-color-tertiary: rgba(255, 255, 255, 0.5);
-    --text-color-quaternary: rgba(255, 255, 255, 0.32);
+    --text-color-primary: #f5f5f5;
+    --text-color-secondary: #d4d4d4;
+    --text-color-tertiary: #a3a3a3;
+    --text-color-quaternary: #737373;
 
-    --background-color-main: var(--color-neutral-950);
-    --background-color-primary: var(--color-neutral-950);
-    --background-color-secondary: var(--color-neutral-900);
-    --background-color-tertiary: var(--color-neutral-800);
-    --background-color-quaternary: rgba(255, 255, 255, 0.03);
-    --background-color-elevated: var(--color-neutral-900);
+    /* Still deep crimson, but readable on black */
+    --accent-crimson: #6a0620;
+    --accent-latest: var(--accent-crimson);
+    --accent-stories: var(--accent-crimson);
+    --accent-columns: var(--accent-crimson);
+    --accent-about: var(--accent-crimson);
+    --accent-resume: var(--accent-crimson);
 
+    --background-color-main: #0a0a0a;
+    --background-color-primary: #0a0a0a;
+    --background-color-secondary: #111111;
+    --background-color-tertiary: #171717;
+    --background-color-quaternary: #262626;
+    --background-color-elevated: #111111;
     --border-color-primary: rgba(255, 255, 255, 0.12);
-    --border-color-secondary: rgba(255, 255, 255, 0.09);
-
-    --scrollbar-color: var(--color-neutral-600);
+    --border-color-secondary: rgba(255, 255, 255, 0.08);
+    --scrollbar-color: rgba(255, 255, 255, 0.24);
+    --focus-ring-color: rgba(106, 6, 32, 0.6);
   }
 }
 
@@ -57,7 +84,9 @@
 
   --text-color-campsite: var(--text-color-campsite);
 
-  --font-family-serif: var(--font-serif), serif;
+  --font-family-serif:
+    var(--font-serif), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 
   --background-color-main: var(--background-color-main);
   --background-color-primary: var(--background-color-primary);
@@ -71,6 +100,11 @@
 }
 
 @layer base {
+  html,
+  body {
+    cursor: var(--cursor-90s-default), default;
+  }
+
   * {
     -webkit-tap-highlight-color: transparent;
     /*
@@ -83,6 +117,34 @@
     font-family: var(--font-sans), sans-serif;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-serif);
+  }
+
+  /* Typewriter-esque heading reveal (global) */
+  h1:not(.no-typewriter),
+  h2:not(.no-typewriter),
+  h3:not(.no-typewriter) {
+    will-change: clip-path;
+    clip-path: inset(0 100% 0 0);
+    animation: typewriter-reveal var(--tw-typewriter-duration, 2400ms)
+      steps(var(--tw-typewriter-steps, 28), end) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1:not(.no-typewriter),
+    h2:not(.no-typewriter),
+    h3:not(.no-typewriter) {
+      animation: none;
+      clip-path: none;
+    }
+  }
+
   *,
   ::after,
   ::before,
@@ -91,8 +153,71 @@
     border-color: var(--border-color-primary, currentColor);
   }
 
-  button {
-    cursor: pointer;
+  a,
+  button,
+  [role="button"],
+  summary {
+    cursor: var(--cursor-90s-pointer), pointer;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
+      opacity, transform, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a,
+    button,
+    [role="button"],
+    summary {
+      transition: none;
+    }
+  }
+
+  :where([data-magnetic="true"], a:not([data-no-magnetic])) {
+    --magnetic-x: 0px;
+    --magnetic-y: 0px;
+    transform: translate3d(var(--magnetic-x), var(--magnetic-y), 0);
+    will-change: transform, filter;
+    transition-property: transform, filter;
+    transition-duration: 90ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  [data-magnetic="true"]:hover {
+    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.12));
+  }
+
+  .dark [data-magnetic="true"]:hover {
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.5));
+  }
+
+  a:not([data-no-magnetic]):hover {
+    text-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark a:not([data-no-magnetic]):hover {
+    text-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-magnetic="true"], a:not([data-no-magnetic])) {
+      transform: none;
+      filter: none;
+      text-shadow: none;
+      transition: none;
+    }
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 3px;
+    border-radius: 10px;
   }
 
   /* Prevent strong tags in headings from adding extra font weight */
@@ -176,6 +301,50 @@
 }
 
 @layer utilities {
+  @keyframes typewriter-reveal {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* Typewriter-esque reveal without layout shift */
+  .typewriter {
+    display: inline-block;
+    will-change: clip-path;
+    clip-path: inset(0 100% 0 0);
+    animation: typewriter-reveal var(--tw-typewriter-duration, 2400ms)
+      steps(var(--tw-typewriter-steps, 28), end) both;
+  }
+
+  .text-accent-crimson {
+    color: var(--accent-crimson);
+  }
+  .text-accent-latest {
+    color: var(--accent-latest);
+  }
+  .text-accent-stories {
+    color: var(--accent-stories);
+  }
+  .text-accent-columns {
+    color: var(--accent-columns);
+  }
+  .text-accent-about {
+    color: var(--accent-about);
+  }
+  .text-accent-resume {
+    color: var(--accent-resume);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typewriter {
+      animation: none;
+      clip-path: none;
+    }
+  }
+
   @keyframes accordion-down {
     from {
       height: 0;

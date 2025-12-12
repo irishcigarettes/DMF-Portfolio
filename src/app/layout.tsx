@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Courier_Prime, Special_Elite } from "next/font/google";
 import { PropsWithChildren } from "react";
 
 import { ClientShell } from "@/components/ClientShell";
@@ -10,10 +10,16 @@ import { cn } from "@/lib/utils";
 
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const ptSerif = Source_Serif_4({
+const sans = Courier_Prime({
   subsets: ["latin"],
   weight: ["400", "700"],
+  variable: "--font-sans",
+});
+
+// Headings/titles: distressed "stamp/typewriter" look.
+const serif = Special_Elite({
+  subsets: ["latin"],
+  weight: ["400"],
   variable: "--font-serif",
 });
 
@@ -38,7 +44,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="rgb(10, 10, 10)" media="(prefers-color-scheme: dark)" />
       </head>
-      <body className={cn(inter.variable, ptSerif.variable)}>
+      <body className={cn(sans.variable, serif.variable)}>
         <Providers>
           <ClientShell>{children}</ClientShell>
         </Providers>

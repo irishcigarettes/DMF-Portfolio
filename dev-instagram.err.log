@@ -1,0 +1,13 @@
+$ bun run generate-schemas
+$ bun scripts/generateNotionSchemas.ts
+Skipping Stack — no ID provided
+Skipping AMA — no ID provided
+Skipping Writing — no ID provided
+Skipping DesignDetailsEpisodes — no ID provided
+Skipping Music — no ID provided
+Skipping GoodWebsites — no ID provided
+Skipping Speaking — no ID provided
+$ next dev --turbopack
+ ⚠ Port 3000 is in use by process 22628, using available port 3001 instead.
+ ⨯ Unable to acquire lock at C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\.next\dev\lock, is another instance of next dev running?
+error: script "dev" exited with code 1

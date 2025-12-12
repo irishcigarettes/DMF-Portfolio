@@ -134,7 +134,7 @@ export async function generateOGImage({ title, url }: OGImageProps) {
               color: TERTIARY_COLOR,
             }}
           >
-            brianlovin.com
+            {url}
           </div>
         </div>
       </div>,

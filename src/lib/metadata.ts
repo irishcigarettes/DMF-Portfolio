@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 
+import { PORTFOLIO } from "@/data/portfolio";
+
 /**
  * Site-wide metadata constants
  */
 export const SITE_CONFIG = {
-  name: "Brian Lovin",
-  title: "Brian Lovin",
+  name: "Dalton Feldhut",
+  title: "Dalton Feldhut",
   description:
-    "Designer and software engineer living in San Francisco. Currently designing AI products at Notion.",
-  url: "https://brianlovin.com",
+    "Creative communication and marketing professional based in Los Angeles. Specialized in press strategy, storytelling, and multimedia production across music, media, and marketing.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   author: {
-    name: "Brian Lovin",
-    twitter: "@brian_lovin",
-    twitterUrl: "https://x.com/brian_lovin",
-    github: "https://github.com/brianlovin",
+    name: "Dalton Feldhut",
+    twitter: undefined as string | undefined,
+    twitterUrl: undefined as string | undefined,
+    github: undefined as string | undefined,
   },
   social: {
     twitter: {
-      handle: "@brian_lovin",
+      handle: undefined as string | undefined,
       cardType: "summary_large_image" as const,
     },
   },
@@ -45,12 +47,14 @@ export const DEFAULT_METADATA: Metadata = {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
   },
-  twitter: {
-    card: SITE_CONFIG.social.twitter.cardType,
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-    creator: SITE_CONFIG.author.twitter,
-  },
+  twitter: SITE_CONFIG.author.twitter
+    ? {
+        card: SITE_CONFIG.social.twitter.cardType,
+        title: SITE_CONFIG.title,
+        description: SITE_CONFIG.description,
+        creator: SITE_CONFIG.author.twitter,
+      }
+    : undefined,
   robots: {
     index: true,
     follow: true,
@@ -121,14 +125,16 @@ export function createMetadata(params: CreateMetadataParams = {}): Metadata {
           authors: [SITE_CONFIG.author.name],
         }),
     },
-    twitter: {
-      card: SITE_CONFIG.social.twitter.cardType,
-      title: title || SITE_CONFIG.title,
-      description,
-      creator: SITE_CONFIG.author.twitter,
-      // Only include images if explicitly provided, otherwise Next.js will use opengraph-image.tsx
-      ...(image && { images: [image] }),
-    },
+    twitter: SITE_CONFIG.author.twitter
+      ? {
+          card: SITE_CONFIG.social.twitter.cardType,
+          title: title || SITE_CONFIG.title,
+          description,
+          creator: SITE_CONFIG.author.twitter,
+          // Only include images if explicitly provided, otherwise Next.js will use opengraph-image.tsx
+          ...(image && { images: [image] }),
+        }
+      : undefined,
     robots: {
       index: !noIndex,
       follow: !noIndex,
@@ -152,7 +158,7 @@ export function createWebSiteJsonLd() {
       "@type": "Person",
       name: SITE_CONFIG.author.name,
       url: SITE_CONFIG.url,
-      sameAs: [SITE_CONFIG.author.twitter, SITE_CONFIG.author.github],
+      sameAs: [PORTFOLIO.links.website, PORTFOLIO.links.instagram, PORTFOLIO.links.youtube],
     },
   };
 }
@@ -207,17 +213,8 @@ export function createPersonJsonLd() {
     name: SITE_CONFIG.author.name,
     url: SITE_CONFIG.url,
     description: SITE_CONFIG.description,
-    sameAs: [
-      SITE_CONFIG.author.twitter,
-      SITE_CONFIG.author.github,
-      "https://www.youtube.com/@brian_lovin",
-    ],
-    jobTitle: "Product Designer",
-    worksFor: {
-      "@type": "Organization",
-      name: "Notion",
-      url: "https://notion.com",
-    },
+    sameAs: [PORTFOLIO.links.website, PORTFOLIO.links.instagram, PORTFOLIO.links.youtube],
+    jobTitle: "Communication & Marketing",
   };
 }
 

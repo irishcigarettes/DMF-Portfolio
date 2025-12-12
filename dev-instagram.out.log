@@ -1,0 +1,9 @@
+schemas/notionSchemas.ts 141ms
+✅ Notion schemas generated at C:\Users\Dalton\Documents\GitHub\DMF-Portfolio\schemas\notionSchemas.ts
+   ▲ Next.js 16.0.7 (Turbopack)
+   - Local:         http://localhost:3001
+   - Network:       http://192.168.1.231:3001
+
+ ✓ Starting...
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

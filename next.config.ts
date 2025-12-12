@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "i.scdn.co",
       },
+      {
+        protocol: "https",
+        hostname: "framerusercontent.com",
+      },
       // Notion CDN domains for uploaded files
       {
         protocol: "https",

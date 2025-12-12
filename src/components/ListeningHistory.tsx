@@ -223,7 +223,7 @@ export function ListeningHistory({ initialData }: ListeningHistoryProps = {}) {
                       height: `${virtualItem.size}px`,
                       transform: `translateY(${virtualItem.start}px)`,
                     }}
-                    className="border-secondary hover:bg-secondary relative border-b dark:hover:bg-white/5"
+                    className="border-secondary hover:bg-secondary active:bg-tertiary focus-within:bg-secondary relative border-b transition-colors dark:hover:bg-white/5 dark:active:bg-white/[0.08]"
                   >
                     {isLoaderRow ? (
                       <LoaderRow isReachingEnd={isReachingEnd} />

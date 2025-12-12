@@ -20,7 +20,14 @@ export function SectionHeading({
 
 export function InlineLink({ href, children }: PropsWithChildren<{ href: string }>) {
   return (
-    <a href={href} target="_blank" className="link-body">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="link-body"
+      data-magnetic="true"
+      data-magnetic-strength="3"
+    >
       {children}
     </a>
   );
@@ -51,8 +58,9 @@ export function List({ children, className = "" }: ListProps) {
 export function ListItem({ children, className = "", href }: ListItemProps) {
   const isLink = !!href;
   const elementClassName = cn(
-    "inline-flex flex-1 text-xl items-center gap-2",
-    isLink && "group/list-item",
+    "inline-flex flex-1 items-center gap-2 rounded-md text-xl transition-colors",
+    isLink &&
+      "group/list-item cursor-pointer hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]",
     className,
   );
 
@@ -61,7 +69,14 @@ export function ListItem({ children, className = "", href }: ListItemProps) {
     if (isExternal) {
       return (
         <li className="flex">
-          <a href={href} target="_blank" className={elementClassName}>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={elementClassName}
+            data-magnetic="true"
+            data-magnetic-strength="3"
+          >
             {children}
           </a>
         </li>
@@ -69,7 +84,12 @@ export function ListItem({ children, className = "", href }: ListItemProps) {
     }
     return (
       <li className="flex">
-        <Link href={href} className={elementClassName}>
+        <Link
+          href={href}
+          className={elementClassName}
+          data-magnetic="true"
+          data-magnetic-strength="3"
+        >
           {children}
         </Link>
       </li>
@@ -87,7 +107,7 @@ export function ListItemLabel({ children, className = "" }: ListItemLabelProps) 
   return (
     <span
       className={cn(
-        "text-primary line-clamp-1 leading-[1.6] font-medium underline-offset-1 group-hover/list-item:underline",
+        "text-primary decoration-quaternary line-clamp-1 leading-[1.6] font-medium underline-offset-1 transition-[color,text-decoration-color] duration-150 group-hover/list-item:underline",
         className,
       )}
     >

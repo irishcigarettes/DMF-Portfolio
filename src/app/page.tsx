@@ -1,30 +1,57 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { Suspense } from "react";
+import Link from "next/link";
 
-import { SpeakingList } from "@/components/home/SpeakingList";
-import { SpeakingListSkeleton } from "@/components/home/SpeakingListSkeleton";
-import { ArrowUpRight } from "@/components/icons/ArrowUpRight";
-import { BufferLogoSVG, GitHubIcon, XIcon, YouTubeIcon } from "@/components/icons/SocialIcons";
-import {
-  List,
-  ListItem,
-  ListItemLabel,
-  ListItemSubLabel,
-  Section,
-  SectionHeading,
-} from "@/components/shared/ListComponents";
+import { PORTFOLIO } from "@/data/portfolio";
 import { createMetadata, createPersonJsonLd } from "@/lib/metadata";
 
 export const metadata: Metadata = createMetadata({
-  title: "Brian Lovin",
+  title: "Dalton Feldhut",
   description:
-    "Brian Lovin is a designer and software engineer living in San Francisco, currently designing AI products at Notion.",
+    "Creative communication and marketing professional based in Los Angeles. Specialized in press strategy, storytelling, and multimedia production across music, media, and marketing.",
   path: "/",
 });
 
+function StoryCategoryPill({ category }: { category: "written" | "edited" }) {
+  const label = category === "written" ? "Written" : "Edited";
+
+  return (
+    <span
+      className={[
+        "border-secondary text-quaternary rounded-full border px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase",
+        category === "edited" ? "border-dashed" : "",
+      ].join(" ")}
+    >
+      {label}
+    </span>
+  );
+}
+
 export default function Home() {
   const personJsonLd = createPersonJsonLd();
+
+  type LatestItem = {
+    section: string;
+    sectionHref: string;
+    title: string;
+    href: string;
+    description?: string;
+    category?: "written" | "edited";
+  };
+
+  const latest: LatestItem[] = [
+    { section: "Stories", href: "/stories", items: PORTFOLIO.stories.slice(0, 1) },
+    { section: "Columns", href: "/columns", items: PORTFOLIO.columns.slice(0, 2) },
+    { section: "Video", href: PORTFOLIO.links.youtube, items: PORTFOLIO.videos.slice(0, 1) },
+  ].flatMap((group) =>
+    group.items.map((item) => ({
+      section: group.section,
+      sectionHref: group.href,
+      title: item.title,
+      href: item.href,
+      description: item.description,
+      category: "category" in item ? item.category : undefined,
+    })),
+  );
 
   return (
     <>
@@ -32,261 +59,189 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <div className="flex flex-1 flex-col">
-        <div className="flex-1 overflow-y-auto">
-          <div className="text-primary mx-auto flex max-w-2xl flex-1 flex-col gap-16 py-16 leading-[1.6] sm:py-32">
-            <Section>
-              <Image
-                src="/img/avatar.jpg"
-                alt="Brian Lovin"
-                width={60}
-                height={60}
-                draggable={false}
-                className="mb-8 rounded-full select-none"
-              />
+      <div data-scrollable className="flex-1 overflow-y-auto">
+        <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-16">
+          <header className="flex flex-col gap-3">
+            <div className="text-quaternary text-sm font-medium tracking-wider uppercase">
+              Stories • Columns • Video
+            </div>
+            <h1 className="text-accent-crimson font-serif text-5xl font-semibold tracking-tight md:text-6xl">
+              {PORTFOLIO.person.name.toUpperCase()}
+            </h1>
+            <div className="text-secondary font-mono text-sm">
+              {PORTFOLIO.person.location} • {PORTFOLIO.person.email} • {PORTFOLIO.person.phone}
+            </div>
+          </header>
 
-              <h1 id="home-title" className="text-2xl font-semibold">
-                Brian Lovin
-              </h1>
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <section className="border-secondary border-t pt-6">
+                <div className="flex items-baseline justify-between">
+                  <h2 className="text-accent-latest font-serif text-3xl font-semibold md:text-4xl">
+                    The Latest
+                  </h2>
+                  <span className="text-quaternary font-mono text-sm">From my desk</span>
+                </div>
 
-              <p className="text-secondary text-2xl font-semibold text-pretty">
-                I’m a software designer living in San Francisco, currently making AI products at{" "}
-                Notion.
-              </p>
-            </Section>
-
-            <Section className="flex flex-row gap-2">
-              <ListItem href="https://x.com/brian_lovin" className="group -ml-1 p-2">
-                <XIcon size={28} className="text-quaternary group-hover:text-primary select-none" />
-              </ListItem>
-              <ListItem href="https://www.youtube.com/@brian_lovin" className="group p-2">
-                <YouTubeIcon
-                  size={32}
-                  className="text-quaternary select-none group-hover:text-[#FF0302]"
-                  playIconClassName="fill-[var(--background-color-main)] sm:fill-[var(--background-color-elevated)]  group-hover:fill-white"
-                />
-              </ListItem>
-              <ListItem href="https://github.com/brianlovin" className="group p-2">
-                <GitHubIcon
-                  size={28}
-                  className="text-quaternary group-hover:text-primary select-none"
-                />
-              </ListItem>
-            </Section>
-
-            <Section>
-              <SectionHeading>Projects</SectionHeading>
-              <List>
-                {projects.map(({ name, href, description, external }) => (
-                  <ListItem
-                    key={name}
-                    href={href}
-                    className="flex-col items-start gap-0 sm:flex-row sm:items-center sm:gap-2"
-                  >
-                    <div className="flex items-center gap-2">
-                      <ListItemLabel className="sm:line-clamp-1">{name}</ListItemLabel>
-                      {external && (
-                        <ListItemSubLabel className="shrink-0 font-mono">
-                          <ArrowUpRight className="text-primary" />
-                        </ListItemSubLabel>
+                <div className="mt-6 flex flex-col gap-4">
+                  {latest.map((item) => (
+                    <article
+                      key={`${item.section}-${item.href}`}
+                      className="group flex flex-col gap-1"
+                    >
+                      <div className="text-quaternary font-mono text-xs tracking-wider uppercase">
+                        {item.sectionHref.startsWith("http") ? (
+                          <a
+                            href={item.sectionHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary"
+                          >
+                            {item.section}
+                          </a>
+                        ) : (
+                          <Link href={item.sectionHref} className="hover:text-primary">
+                            {item.section}
+                          </Link>
+                        )}
+                      </div>
+                      <div className="flex items-baseline justify-between gap-3">
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary min-w-0 font-serif text-2xl leading-tight underline-offset-4 group-hover:underline"
+                        >
+                          {item.title}
+                        </a>
+                        {item.section === "Stories" && item.category ? (
+                          <span className="shrink-0">
+                            <StoryCategoryPill category={item.category} />
+                          </span>
+                        ) : null}
+                      </div>
+                      {item.description && (
+                        <p className="text-secondary italic">{item.description}</p>
                       )}
-                    </div>
-                    <ListItemSubLabel className="flex-1">{description}</ListItemSubLabel>
-                  </ListItem>
-                ))}
-              </List>
-            </Section>
+                    </article>
+                  ))}
+                </div>
+              </section>
 
-            <Section>
-              <SectionHeading>Work</SectionHeading>
-              <List className="gap-8">
-                {work.map(({ name, href, role, period, icon }) => (
-                  <ListItem
-                    key={name}
-                    href={href}
-                    className="flex-col items-start gap-0.5 sm:flex-row sm:items-center sm:gap-3"
+              <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+                <section className="border-secondary border-t pt-6">
+                  <div className="flex items-baseline justify-between">
+                    <h2 className="text-accent-stories font-serif text-3xl font-semibold md:text-4xl">
+                      Stories
+                    </h2>
+                    <Link
+                      href="/stories"
+                      className="text-quaternary hover:text-primary font-mono text-sm"
+                    >
+                      View all
+                    </Link>
+                  </div>
+
+                  <div className="mt-4 flex flex-col gap-3">
+                    {PORTFOLIO.stories.map((s) => (
+                      <a
+                        key={s.href}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-baseline justify-between gap-3"
+                      >
+                        <span className="text-primary min-w-0 underline-offset-4 group-hover:underline">
+                          {s.title}
+                        </span>
+                        <span className="shrink-0">
+                          <StoryCategoryPill category={s.category} />
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="border-secondary border-t pt-6">
+                  <div className="flex items-baseline justify-between">
+                    <h2 className="text-accent-columns font-serif text-3xl font-semibold md:text-4xl">
+                      Columns
+                    </h2>
+                    <Link
+                      href="/columns"
+                      className="text-quaternary hover:text-primary font-mono text-sm"
+                    >
+                      View all
+                    </Link>
+                  </div>
+
+                  <div className="mt-4 flex flex-col gap-3">
+                    {PORTFOLIO.columns.map((c) => (
+                      <a
+                        key={c.href}
+                        href={c.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline-offset-4 hover:underline"
+                      >
+                        {c.title}
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <aside className="lg:col-span-4">
+              <div className="border-secondary rounded-xl border bg-white p-6 dark:bg-black">
+                <h2 className="text-accent-about font-serif text-3xl font-semibold md:text-4xl">
+                  About
+                </h2>
+                <p className="text-secondary mt-3 leading-relaxed">{PORTFOLIO.summary}</p>
+
+                <div className="mt-6 flex flex-col gap-2">
+                  <a
+                    href={PORTFOLIO.links.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary italic underline-offset-4 hover:underline"
                   >
-                    {icon.type === "image" ? (
-                      <Image
-                        width={40}
-                        height={40}
-                        src={icon.src}
-                        alt={icon.alt}
-                        className="mb-2 size-7 rounded-md select-none sm:mb-0 sm:size-5"
-                        draggable={false}
-                      />
-                    ) : (
-                      <icon.component className="text-primary mb-2 size-7 sm:mb-0 sm:size-5" />
-                    )}
-                    <div className="flex items-center gap-2 sm:contents">
-                      <ListItemLabel>{name}</ListItemLabel>
-                      <ListItemSubLabel>{role}</ListItemSubLabel>
-                    </div>
-                    <ListItemSubLabel className="font-mono text-[19px] opacity-80 sm:ml-auto">
-                      {period}
-                    </ListItemSubLabel>
-                  </ListItem>
-                ))}
-              </List>
-            </Section>
-
-            <Section>
-              <SectionHeading>Speaking</SectionHeading>
-              <Suspense fallback={<SpeakingListSkeleton />}>
-                <SpeakingList />
-              </Suspense>
-            </Section>
+                    The Bum Diary
+                  </a>
+                  <a
+                    href={PORTFOLIO.links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary italic underline-offset-4 hover:underline"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href={PORTFOLIO.links.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary italic underline-offset-4 hover:underline"
+                  >
+                    YouTube
+                  </a>
+                  <Link
+                    href="/resume"
+                    className="text-primary italic underline-offset-4 hover:underline"
+                  >
+                    Resume
+                  </Link>
+                  <a
+                    href={`mailto:${PORTFOLIO.person.email}`}
+                    className="text-primary italic underline-offset-4 hover:underline"
+                  >
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
     </>
   );
 }
-
-const projects = [
-  {
-    name: "Writing",
-    href: "/writing",
-    description: "Notes on software and other things",
-    external: false,
-  },
-  {
-    name: "HN",
-    href: "/hn",
-    description: "A minimal hacker news reader",
-    external: false,
-  },
-  {
-    name: "App Dissection",
-    href: "/app-dissection",
-    description: "Breaking down well-designed apps",
-    external: false,
-  },
-  {
-    name: "Stack",
-    href: "/stack",
-    description: "My favorite apps and tools",
-    external: false,
-  },
-  {
-    name: "AMA",
-    href: "/ama",
-    description: "Ask me anything",
-    external: false,
-  },
-  {
-    name: "Listening",
-    href: "/listening",
-    description: "What I'm listening to",
-    external: false,
-  },
-  {
-    name: "Good websites",
-    href: "/sites",
-    description: "A curated collection of good websites",
-    external: false,
-  },
-  {
-    name: "Staff Design",
-    href: "https://staff.design",
-    description: "Navigating the IC career path",
-    external: true,
-  },
-  {
-    name: "Design Details",
-    href: "https://designdetails.fm",
-    description: "A podcast about design and technology",
-    external: true,
-  },
-  {
-    name: "How to Computer Better",
-    href: "https://brianlovin.notion.site/how-to-computer-better",
-    description: "Get good at computering",
-    external: true,
-  },
-  {
-    name: "Crit",
-    href: "https://www.youtube.com/playlist?list=PLJu44Klx1pB_8GSOUeDNDllPICvMJKSut",
-    description: "App design critique",
-    external: true,
-  },
-];
-
-type WorkIcon =
-  | { type: "image"; src: string; alt: string }
-  | { type: "svg"; component: React.ComponentType<{ className?: string }> };
-
-interface WorkItem {
-  name: string;
-  href: string;
-  role: string;
-  period: string;
-  icon: WorkIcon;
-}
-
-const work: WorkItem[] = [
-  {
-    name: "Notion",
-    href: "https://notion.com",
-    role: "Product Designer",
-    period: "Current",
-    icon: {
-      type: "image",
-      src: "/img/notion.png",
-      alt: "Notion",
-    },
-  },
-  {
-    name: "Campsite",
-    href: "https://campsite.com",
-    role: "Co-founder",
-    period: "2022–25",
-    icon: {
-      type: "image",
-      src: "/img/campsite.png",
-      alt: "Campsite",
-    },
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/mobile",
-    role: "Product Designer",
-    period: "2018–22",
-    icon: {
-      type: "svg",
-      component: GitHubIcon,
-    },
-  },
-  {
-    name: "Spectrum",
-    href: "https://spectrum.chat",
-    role: "Co-founder",
-    period: "2017–18",
-    icon: {
-      type: "image",
-      src: "/img/spectrum.png",
-      alt: "Spectrum",
-    },
-  },
-  {
-    name: "Facebook",
-    href: "https://facebook.com",
-    role: "Product Designer",
-    period: "2015–17",
-    icon: {
-      type: "image",
-      src: "/img/facebook.png",
-      alt: "Facebook",
-    },
-  },
-  {
-    name: "Buffer",
-    href: "https://buffer.com",
-    role: "Product Designer",
-    period: "2013–15",
-    icon: {
-      type: "svg",
-      component: BufferLogoSVG,
-    },
-  },
-];

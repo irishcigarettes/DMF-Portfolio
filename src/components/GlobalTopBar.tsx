@@ -3,10 +3,14 @@
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 import { sidebarAtom } from "@/atoms/sidebar";
+import { Instagram } from "@/components/icons/Instagram";
+import { Mail } from "@/components/icons/Mail";
+import { YouTubeIcon } from "@/components/icons/SocialIcons";
 import { navigationItems } from "@/config/navigation";
+import { PORTFOLIO } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 import { MenuToggle } from "./icons/MenuToggle";
@@ -73,7 +77,12 @@ export function BreadcrumbDivider() {
 export function BreadcrumbLabel({ href, children }: { href?: string; children: React.ReactNode }) {
   if (href) {
     return (
-      <Link href={href} className="text-primary p-2 font-medium">
+      <Link
+        href={href}
+        className="text-primary rounded-md p-2 font-medium hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+        data-magnetic="true"
+        data-magnetic-strength="2"
+      >
         {children}
       </Link>
     );
@@ -84,8 +93,6 @@ export function BreadcrumbLabel({ href, children }: { href?: string; children: R
 export function GlobalTopBar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useAtom(sidebarAtom);
-
-  const isHomePage = pathname === "/";
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     // Check if click target is or is inside a button or link
@@ -102,31 +109,91 @@ export function GlobalTopBar() {
     }
   }, []);
 
-  // Find the matching navigation item for the current path
-  const currentNavItem = navigationItems.find((item) => item.isActive?.(pathname));
+  const mainNavItems = useMemo(() => navigationItems.filter((item) => item.section === "main"), []);
 
   return (
     <>
       <div
         onClick={handleClick}
         className={cn(
-          "sticky top-0 z-20 flex h-14 items-center gap-1 self-start bg-white px-3 dark:bg-black",
-          {
-            "bg-white dark:bg-black": isOpen,
-          },
+          "border-secondary sticky top-0 z-30 flex h-14 w-full items-center border-b bg-white/90 px-3 backdrop-blur dark:bg-black/80",
         )}
       >
-        <IconButton className="rounded-full" size="lg" onClick={() => setIsOpen(!isOpen)}>
+        <IconButton
+          className="rounded-full md:hidden"
+          size="lg"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
           <MenuToggle isOpen={isOpen} />
         </IconButton>
-        {!isHomePage && <BreadcrumbLabel href="/">Brian Lovin</BreadcrumbLabel>}
-        {currentNavItem && !isHomePage && (
-          <>
-            <BreadcrumbDivider />
-            <BreadcrumbLabel href={currentNavItem.href}>{currentNavItem.label}</BreadcrumbLabel>
-          </>
-        )}
-        <TopBarActionsSlot />
+
+        <Link
+          href="/"
+          className="text-primary font-serif text-lg font-semibold tracking-tight transition-opacity select-none hover:opacity-90"
+          data-magnetic="true"
+          data-magnetic-strength="2"
+        >
+          DALTON FELDHUT
+        </Link>
+
+        <nav className="ml-6 hidden items-center gap-6 md:flex">
+          {mainNavItems
+            .filter((item) => item.href !== "/")
+            .map((item) => {
+              const isActive = item.isActive?.(pathname) ?? false;
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={cn(
+                    "text-secondary decoration-quaternary hover:text-primary font-medium tracking-wide uppercase transition-colors hover:underline hover:underline-offset-4",
+                    isActive && "text-primary underline underline-offset-4",
+                  )}
+                  data-magnetic="true"
+                  data-magnetic-strength="2"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-1">
+          <a
+            href={PORTFOLIO.links.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:text-primary rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+            data-no-magnetic="true"
+            aria-label="Instagram"
+          >
+            <Instagram size={20} />
+          </a>
+          <a
+            href={PORTFOLIO.links.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:text-primary rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+            data-no-magnetic="true"
+            aria-label="YouTube"
+          >
+            <YouTubeIcon
+              size={22}
+              className="text-current"
+              playIconClassName="fill-[var(--background-color-elevated)]"
+            />
+          </a>
+          <a
+            href={`mailto:${PORTFOLIO.person.email}`}
+            className="text-secondary hover:text-primary rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+            data-no-magnetic="true"
+            aria-label="Email"
+          >
+            <Mail size={20} />
+          </a>
+          <TopBarActionsSlot />
+        </div>
       </div>
     </>
   );

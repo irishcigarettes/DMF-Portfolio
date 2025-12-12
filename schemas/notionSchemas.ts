@@ -74,7 +74,7 @@ export const MusicSchema = z.object({
   Duration: z.number().optional(),
   Journal: z.array(z.object({ id: z.string() })).optional(),
   "Spotify URL": z.string().optional(),
-  "Dupe Key": z.string().optional(),
+  "Dupe Key": z.any().optional(),
   Artist: z.string().optional(),
   Album: z.string().optional(),
   Popularity: z.number().optional(),

@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex rounded-full select-none cursor-pointer group/button items-center gap-1.5 justify-center whitespace-nowrap font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 flex-none dark:focus-visible:ring-neutral-300",
+  "inline-flex rounded-full select-none cursor-pointer group/button items-center gap-1.5 justify-center whitespace-nowrap font-medium disabled:pointer-events-none disabled:opacity-50 flex-none transition-[color,background-color,border-color,box-shadow,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring-color)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background-color-primary)] active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-black/[0.06] text-neutral-900 hover:bg-black/[0.08] dark:bg-white/10 dark:shadow-[inset_0_0.5px_0_0_rgba(255,255,255,0.06),_0_1px_1px_rgba(0,0,0,0.5)] dark:text-neutral-50 dark:hover:bg-white/[0.12]",
         ghost:
           "bg-black/[0] hover:bg-black/[0.08] dark:bg-white/0 dark:hover:bg-white/[0.12] text-primary",
-        link: "text-secondary underline-offset-4 hover:underline dark:text-primary",
+        link: "text-secondary underline-offset-4 hover:underline dark:text-primary active:scale-100",
         primary:
           "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-500 dark:hover:saturate-[101%]",
       },

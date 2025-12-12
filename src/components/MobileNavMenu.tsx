@@ -7,8 +7,11 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 import { sidebarAtom } from "@/atoms/sidebar";
-import { GitHubIcon, XIcon, YouTubeIcon } from "@/components/icons/SocialIcons";
+import { Instagram } from "@/components/icons/Instagram";
+import { Mail } from "@/components/icons/Mail";
+import { YouTubeIcon } from "@/components/icons/SocialIcons";
 import { getMainNavigationItems, getProjectNavigationItems } from "@/config/navigation";
+import { PORTFOLIO } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 export function MobileNavMenu() {
@@ -66,34 +69,38 @@ export function MobileNavMenu() {
               ))}
             </div>
 
-            <div className="mt-8">
-              <span className="text-quaternary text-sm font-medium">Projects</span>
-              <div className="mt-3 flex flex-col gap-1">
-                {projectNavItems.map((item) => (
-                  <MobileNavLink
-                    key={item.id}
-                    href={item.href}
-                    isActive={item.isActive?.(pathname) ?? false}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </MobileNavLink>
-                ))}
+            {projectNavItems.length > 0 && (
+              <div className="mt-8">
+                <span className="text-quaternary text-sm font-medium">Projects</span>
+                <div className="mt-3 flex flex-col gap-1">
+                  {projectNavItems.map((item) => (
+                    <MobileNavLink
+                      key={item.id}
+                      href={item.href}
+                      isActive={item.isActive?.(pathname) ?? false}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </MobileNavLink>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Social links */}
             <div className="mt-8 flex flex-row items-center gap-4">
               <Link
-                href="https://x.com/brian_lovin"
-                className="text-quaternary hover:text-primary -ml-2 p-2"
+                href={PORTFOLIO.links.instagram}
+                className="text-quaternary hover:text-primary -ml-2 rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+                data-no-magnetic="true"
                 onClick={() => setIsOpen(false)}
               >
-                <XIcon size={24} />
+                <Instagram size={24} />
               </Link>
               <Link
-                href="https://www.youtube.com/@brian_lovin"
-                className="group p-2"
+                href={PORTFOLIO.links.youtube}
+                className="group rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+                data-no-magnetic="true"
                 onClick={() => setIsOpen(false)}
               >
                 <YouTubeIcon
@@ -103,11 +110,12 @@ export function MobileNavMenu() {
                 />
               </Link>
               <Link
-                href="https://github.com/brianlovin"
-                className="text-quaternary hover:text-primary p-2"
+                href={`mailto:${PORTFOLIO.person.email}`}
+                className="text-quaternary hover:text-primary rounded-md p-2 hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]"
+                data-no-magnetic="true"
                 onClick={() => setIsOpen(false)}
               >
-                <GitHubIcon size={24} />
+                <Mail size={24} />
               </Link>
             </div>
           </nav>
@@ -129,11 +137,12 @@ function MobileNavLink({
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} onClick={onClick}>
+    <Link href={href} onClick={onClick} data-magnetic="true" data-magnetic-strength="2">
       <div
-        className={cn("py-2 text-xl font-semibold", {
-          "text-primary": isActive,
-          "text-tertiary hover:text-primary": !isActive,
+        className={cn("rounded-md px-2 py-2 text-xl font-semibold transition-colors", {
+          "text-primary bg-black/[0.04] dark:bg-white/[0.06]": isActive,
+          "text-tertiary hover:text-primary hover:bg-black/[0.04] active:bg-black/[0.06] dark:hover:bg-white/[0.06] dark:active:bg-white/[0.08]":
+            !isActive,
         })}
       >
         {children}
