@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import { MagazineFlipbook } from "@/components/magazine/MagazineFlipbook";
 import {
-    InlineLink,
-    List,
-    ListItem,
-    ListItemLabel,
-    ListItemSubLabel,
+  InlineLink,
+  List,
+  ListItem,
+  ListItemLabel,
+  ListItemSubLabel,
 } from "@/components/shared/ListComponents";
 import { PageTitle } from "@/components/Typography";
 import { MAGAZINE_ISSUES } from "@/data/magazine";

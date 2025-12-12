@@ -7,6 +7,7 @@ import { Camera } from "@/components/icons/Camera";
 import { Home } from "@/components/icons/Home";
 import { Newspaper } from "@/components/icons/Newspaper";
 import { IconProps } from "@/components/icons/types";
+import { Video } from "@/components/icons/Video";
 
 export interface NavigationItem {
   id: string;
@@ -53,6 +54,15 @@ export const navigationItems: NavigationItem[] = [
     icon: Newspaper,
     keywords: ["magazine", "print"],
     isActive: (pathname) => pathname.startsWith("/magazine"),
+    section: "main",
+  },
+  {
+    id: "video",
+    label: "Video",
+    href: "/video",
+    icon: Video,
+    keywords: ["video", "youtube", "reels", "social"],
+    isActive: (pathname) => pathname.startsWith("/video"),
     section: "main",
   },
   {

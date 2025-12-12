@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
+import { MAGAZINE_ISSUES } from "@/data/magazine";
 import { PORTFOLIO } from "@/data/portfolio";
 import { createMetadata, createPersonJsonLd } from "@/lib/metadata";
 
@@ -28,6 +30,11 @@ function StoryCategoryPill({ category }: { category: "written" | "edited" }) {
 
 export default function Home() {
   const personJsonLd = createPersonJsonLd();
+  const magazineIssue = MAGAZINE_ISSUES[0];
+  const magazineHref = magazineIssue ? `/magazine/${magazineIssue.slug}` : "/magazine";
+  const magazineCoverUrl = magazineIssue
+    ? (magazineIssue.pageImageUrls[0] ?? magazineIssue.coverImageUrl)
+    : null;
 
   type LatestItem = {
     section: string;
@@ -63,7 +70,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-16">
           <header className="flex flex-col gap-3">
             <div className="text-quaternary text-sm font-medium tracking-wider uppercase">
-              Stories • Columns • Video
+              Stories • Columns • Video • Magazine
             </div>
             <h1 className="text-accent-crimson font-serif text-5xl font-semibold tracking-tight md:text-6xl">
               {PORTFOLIO.person.name.toUpperCase()}
@@ -190,6 +197,54 @@ export default function Home() {
                   </div>
                 </section>
               </div>
+
+              {magazineIssue && magazineCoverUrl ? (
+                <section className="border-secondary mt-10 border-t pt-6">
+                  <div className="flex items-baseline justify-between">
+                    <h2 className="text-accent-crimson font-serif text-3xl font-semibold md:text-4xl">
+                      Magazine
+                    </h2>
+                    <Link
+                      href="/magazine"
+                      className="text-quaternary hover:text-primary font-mono text-sm"
+                    >
+                      View
+                    </Link>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-[160px_1fr] sm:items-start">
+                    <Link
+                      href={magazineHref}
+                      className="border-secondary bg-secondary group relative overflow-hidden rounded-xl border"
+                    >
+                      <div className="relative aspect-[3/4] w-full">
+                        <Image
+                          src={magazineCoverUrl}
+                          alt={`${magazineIssue.title} cover`}
+                          fill
+                          sizes="160px"
+                          className="object-contain p-2 transition-transform group-hover:scale-[1.02]"
+                        />
+                      </div>
+                    </Link>
+
+                    <div className="flex flex-col gap-2">
+                      <p className="text-secondary leading-relaxed">
+                        Now reading: <span className="font-serif">{magazineIssue.title}</span> —{" "}
+                        {magazineIssue.tagline ? `${magazineIssue.tagline} · ` : ""}
+                        {magazineIssue.printNumber} · released: {magazineIssue.releaseDate}
+                      </p>
+
+                      <div className="[&_a]:text-primary flex flex-wrap items-center gap-x-4 gap-y-1 [&_a]:italic [&_a]:underline-offset-4 [&_a:hover]:underline">
+                        <Link href={magazineHref}>Read issue</Link>
+                        <a href={magazineIssue.sourceUrl} target="_blank" rel="noopener noreferrer">
+                          Source
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              ) : null}
             </div>
 
             <aside className="lg:col-span-4">
@@ -199,43 +254,18 @@ export default function Home() {
                 </h2>
                 <p className="text-secondary mt-3 leading-relaxed">{PORTFOLIO.summary}</p>
 
-                <div className="mt-6 flex flex-col gap-2">
-                  <a
-                    href={PORTFOLIO.links.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary italic underline-offset-4 hover:underline"
-                  >
+                <div className="[&_a]:text-primary mt-6 flex flex-col gap-2 [&_a]:italic [&_a]:underline-offset-4 [&_a:hover]:underline">
+                  <a href={PORTFOLIO.links.website} target="_blank" rel="noopener noreferrer">
                     The Bum Diary
                   </a>
-                  <a
-                    href={PORTFOLIO.links.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary italic underline-offset-4 hover:underline"
-                  >
+                  <a href={PORTFOLIO.links.instagram} target="_blank" rel="noopener noreferrer">
                     Instagram
                   </a>
-                  <a
-                    href={PORTFOLIO.links.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary italic underline-offset-4 hover:underline"
-                  >
+                  <a href={PORTFOLIO.links.youtube} target="_blank" rel="noopener noreferrer">
                     YouTube
                   </a>
-                  <Link
-                    href="/resume"
-                    className="text-primary italic underline-offset-4 hover:underline"
-                  >
-                    Resume
-                  </Link>
-                  <a
-                    href={`mailto:${PORTFOLIO.person.email}`}
-                    className="text-primary italic underline-offset-4 hover:underline"
-                  >
-                    Contact
-                  </a>
+                  <Link href="/resume">Resume</Link>
+                  <a href={`mailto:${PORTFOLIO.person.email}`}>Contact</a>
                 </div>
               </div>
             </aside>

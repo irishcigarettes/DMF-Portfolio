@@ -113,19 +113,20 @@ function isNearColor(r: number, g: number, b: number, target: Rgb, threshold: nu
 
 function shouldRecolor(r: number, g: number, b: number, a: number): boolean {
   if (a < 8) return false;
-  // Recolor "non-neutral" pixels (keeps black/white/gray outlines intact).
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const saturation = max - min;
-  if (saturation < 22) return false;
-  // Avoid recoloring extremely dark pixels (usually outlines).
-  if (max < 40) return false;
+  // Keep black outlines and near-white highlights intact.
+  if (isBlackish(r, g, b, a)) return false;
+  if (isWhitish(r, g, b, a)) return false;
   return true;
 }
 
 function isBlackish(r: number, g: number, b: number, a: number): boolean {
   if (a < 8) return false;
   return r <= 28 && g <= 28 && b <= 28;
+}
+
+function isWhitish(r: number, g: number, b: number, a: number): boolean {
+  if (a < 8) return false;
+  return r >= 242 && g >= 242 && b >= 242;
 }
 
 function applyPixelOutline(
@@ -362,8 +363,11 @@ export function ThemedCursor() {
 
     function getAccentCrimson(): Rgb {
       const computed = getComputedStyle(document.documentElement);
-      const raw = computed.getPropertyValue("--accent-crimson");
-      const parsed = parseHexColor(raw);
+      // Prefer the cursor-specific crimson (stable across themes), fall back to the
+      // current accent (used for the name/header).
+      const rawCursor = computed.getPropertyValue("--cursor-crimson");
+      const rawAccent = computed.getPropertyValue("--accent-crimson");
+      const parsed = parseHexColor(rawCursor) ?? parseHexColor(rawAccent);
       // Fallback to a visible crimson if parsing fails.
       return parsed ?? { r: 106, g: 6, b: 32 };
     }
@@ -406,10 +410,10 @@ export function ThemedCursor() {
         const pad = 2;
 
         const kinds: Array<"arrow" | "ball" | "hand"> = ["arrow", "ball", "hand"];
-        const vars: Array<{ cssVar: string; fallback: string }> = [
-          { cssVar: "--cursor-default", fallback: "auto" },
-          { cssVar: "--cursor-progress", fallback: "progress" },
-          { cssVar: "--cursor-pointer", fallback: "pointer" },
+        const vars: Array<{ cssVar: string }> = [
+          { cssVar: "--cursor-default" },
+          { cssVar: "--cursor-progress" },
+          { cssVar: "--cursor-pointer" },
         ];
 
         for (let i = 0; i < 3; i++) {
@@ -446,9 +450,15 @@ export function ThemedCursor() {
             const dstOff = (relY * outCanvas.width + relX) * 4;
 
             if (shouldRecolor(r, g, b, a)) {
-              // Match the hue/saturation of the name's red, vary only lightness for shading.
+              /*
+                Match the hue/saturation of the chosen crimson, but keep per-pixel
+                shading by mapping the original pixel's luminance into lightness.
+
+                This ensures neutral grays (e.g. tennis ball shading) also become
+                crimson-tinted, while black outlines and near-white highlights stay.
+              */
               const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-              const l = clamp01(accentHsl.l * 0.65 + luminance * 0.35);
+              const l = clamp01(0.1 + luminance * 0.8);
               const mapped = hslToRgb({ h: accentHsl.h, s: accentHsl.s, l });
               out[dstOff] = mapped.r;
               out[dstOff + 1] = mapped.g;
@@ -500,7 +510,9 @@ export function ThemedCursor() {
           }
 
           const dataUrl = finalCanvas.toDataURL("image/png");
-          const cursorValue = `url("${dataUrl}") ${hotspot.x} ${hotspot.y}, ${vars[i].fallback}`;
+          // Important: keep this value to a single cursor image (no commas).
+          // The CSS layer provides the fallback cursor list.
+          const cursorValue = `url("${dataUrl}") ${hotspot.x} ${hotspot.y}`;
           setCursorVar(vars[i].cssVar, cursorValue);
         }
       } catch {

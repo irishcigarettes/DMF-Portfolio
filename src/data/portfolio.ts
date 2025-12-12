@@ -119,6 +119,11 @@ export const PORTFOLIO = {
   ] satisfies ColumnLink[],
   videos: [
     {
+      title: "Trip to Japan",
+      href: "https://youtu.be/BQPt2zEt3Ek?si=jBYaOYC8k6mVCgU2",
+      description: "Travel video.",
+    },
+    {
       title: "Unleashed and Let Loose… The Extravagant Queer Madness of the Modern Furry",
       href: "https://youtu.be/vDx-mfHzyF4?si=CE8I58E7dSfUw6DX",
       description: "Video feature (YouTube).",
